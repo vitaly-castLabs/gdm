@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta id="theme-color" name="theme-color" content="#ffffff">
+
+  <base target="_blank">
+
+  <title>getDisplayMedia</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./main.css">
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
-  <style>
-    body {
-      font-family: monospace;
-    }
-  </style>
 </head>
 <body>
-  <p><video id="video" autoplay playsinline muted width="60%"></video></p>
-  <p><button id="startButton" disabled>Start</button></p>
-  <p><fieldset id="options" style="display:none">
-    <legend>Advanced options</legend>
-    <select id="displaySurface">
-      <option value="default" selected>Show default sharing options</option>
-      <option value="browser">Prefer to share a browser tab</option>
-      <option value="window">Prefer to share a window</option>
-      <option value="monitor">Prefer to share an entire screen</option>
-    </select>
-  </fieldset></p>
-  <div id="errorMsg"></div>
+  <div id="container">
+    <video id="video" autoplay playsinline muted></video>
+    <button id="startButton" disabled>Start</button>
+    <fieldset id="options" style="display:none">
+      <legend>Advanced options</legend>
+      <select id="displaySurface">
+        <option value="default" selected>Show default sharing options</option>
+        <option value="browser">Prefer to share a browser tab</option>
+        <option value="window">Prefer to share a window</option>
+        <option value="monitor">Prefer to share an entire screen</option>
+      </select>
+    </fieldset>
+    <div id="errorMsg"></div>
+  </div>
   <p>Screenshots:</p>
 
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>

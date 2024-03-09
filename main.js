@@ -69,7 +69,10 @@ function errorMsg(msg, error) {
 }
 
 startButton.addEventListener('click', () => {
-  const options = {audio: true, video: true};
+  const options = {
+    audio: true,
+    video: {width: {ideal: 4096}, height: {ideal: 2160}, frameRate: 30}
+  };
   const displaySurface = preferredDisplaySurface.options[preferredDisplaySurface.selectedIndex].value;
   if (displaySurface !== 'default') {
     options.video = {displaySurface};
