@@ -36,7 +36,7 @@ function handleSuccess(stream) {
         return;
 
       try {
-        console.log(`Captured res: ${video.videoWidth}x${video.videoHeight}`);
+        errorMsg(`${video.videoWidth}x${video.videoHeight}`);
         const canvas = document.createElement('canvas');
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
@@ -60,7 +60,9 @@ function handleError(error) {
 
 function errorMsg(msg, error) {
   const errorElement = document.querySelector('#errorMsg');
-  errorElement.innerHTML += `<p>${msg}</p>`;
+  const date = new Date();
+  const time = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
+  errorElement.innerHTML += `<br>${time} ${msg}`;
   if (typeof error !== 'undefined') {
     console.error(error);
   }

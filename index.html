@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <head>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <style>
+    body {
+      font-family: monospace;
+    }
+  </style>
 </head>
 <body>
-  <div id="container">
-    <p><video id="video" autoplay playsinline muted width="60%"></video></p>
-    <p><button id="startButton" disabled>Start</button></p>
-    <p><fieldset id="options" style="display:none">
-      <legend>Advanced options</legend>
-      <select id="displaySurface">
-        <option value="default" selected>Show default sharing options</option>
-        <option value="browser">Prefer to share a browser tab</option>
-        <option value="window">Prefer to share a window</option>
-        <option value="monitor">Prefer to share an entire screen</option>
-      </select>
-    </fieldset></p>
-    <div id="errorMsg"></div>
-  </div>
+  <p><video id="video" autoplay playsinline muted width="60%"></video></p>
+  <p><button id="startButton" disabled>Start</button></p>
+  <p><fieldset id="options" style="display:none">
+    <legend>Advanced options</legend>
+    <select id="displaySurface">
+      <option value="default" selected>Show default sharing options</option>
+      <option value="browser">Prefer to share a browser tab</option>
+      <option value="window">Prefer to share a window</option>
+      <option value="monitor">Prefer to share an entire screen</option>
+    </select>
+  </fieldset></p>
+  <div id="errorMsg"></div>
   <p>Screenshots:</p>
 
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
