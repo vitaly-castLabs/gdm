@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <style>
+        body {
+            font-family: monospace;
+        }
+    </style>
+
+    <script>
+        let stream, track, capture, loop
+        async function startCapture() {
+            stream = await navigator.mediaDevices.getDisplayMedia()
+            track = stream.getVideoTracks()[0]
+            capture = new ImageCapture(track)
+        }
+
+        async function takeScreenshot() {
+            try {
+                const bitmap = await capture.grabFrame()
+                const canvas = document.createElement('canvas')
+                canvas.width = bitmap.width
+                canvas.height = bitmap.height
+                canvas.style.width = '60%'
+                canvas.getContext('bitmaprenderer').transferFromImageBitmap(bitmap)
+                document.body.append(canvas)
+            }
+            catch(e) {
+                console.log('Stopping capture loop')
+                clearInterval(loop)
+            }
+        }
+
+        window.onload = async function() {
+            await startCapture()
+            loop = setInterval(takeScreenshot, 10000)
+        }
+    </script>
+</head>
+<body>
+    <p>Taking a screenshot every 10s</p>
+</body>
+</html>
