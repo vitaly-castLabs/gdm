@@ -2,43 +2,24 @@
 <html>
     <head>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <style>
-        body {
-            font-family: monospace;
-        }
-    </style>
-
-    <script>
-        let stream, track, capture, loop
-        async function startCapture() {
-            stream = await navigator.mediaDevices.getDisplayMedia()
-            track = stream.getVideoTracks()[0]
-            capture = new ImageCapture(track)
-        }
-
-        async function takeScreenshot() {
-            try {
-                const bitmap = await capture.grabFrame()
-                const canvas = document.createElement('canvas')
-                canvas.width = bitmap.width
-                canvas.height = bitmap.height
-                canvas.style.width = '60%'
-                canvas.getContext('bitmaprenderer').transferFromImageBitmap(bitmap)
-                document.body.append(canvas)
-            }
-            catch(e) {
-                console.log('Stopping capture loop')
-                clearInterval(loop)
-            }
-        }
-
-        window.onload = async function() {
-            await startCapture()
-            loop = setInterval(takeScreenshot, 10000)
-        }
-    </script>
 </head>
 <body>
-    <p>Taking a screenshot every 10s</p>
-</body>
+  <div id="container">
+    <p><video id="video" autoplay playsinline muted width="60%"></video></p>
+    <p><button id="startButton" disabled>Start</button></p>
+    <p><fieldset id="options" style="display:none">
+      <legend>Advanced options</legend>
+      <select id="displaySurface">
+        <option value="default" selected>Show default sharing options</option>
+        <option value="browser">Prefer to share a browser tab</option>
+        <option value="window">Prefer to share a window</option>
+        <option value="monitor">Prefer to share an entire screen</option>
+      </select>
+    </fieldset></p>
+    <div id="errorMsg"></div>
+  </div>
+  <p>Screenshots:</p>
+
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="./main.js"></script>
 </html>
